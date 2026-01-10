@@ -1,57 +1,28 @@
 import { Shield, Truck, RefreshCw, Headphones } from "lucide-react";
 
 const features = [
-  {
-    icon: Shield,
-    title: "100% Authentic",
-    description: "Genuine handwoven Ilkal sarees directly from artisans",
-  },
-  {
-    icon: Truck,
-    title: "Pan-India Delivery",
-    description: "Fast & secure shipping across all pin codes",
-  },
-  {
-    icon: RefreshCw,
-    title: "Easy Returns",
-    description: "Hassle-free 7-day return policy for your peace of mind",
-  },
-  {
-    icon: Headphones,
-    title: "24/7 Support",
-    description: "Dedicated customer care to assist you anytime",
-  },
+  { icon: Shield, title: "100% Authentic", description: "Genuine handwoven Ilkal sarees" },
+  { icon: Truck, title: "Pan-India Delivery", description: "Fast & secure shipping" },
+  { icon: RefreshCw, title: "Easy Returns", description: "7-day hassle-free returns" },
+  { icon: Headphones, title: "24/7 Support", description: "Dedicated customer care" },
 ];
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-12 md:py-16 bg-secondary">
+    <section className="py-16 md:py-20 bg-secondary/50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-10 opacity-0 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          <span className="text-gold font-body text-sm tracking-[0.2em] uppercase">
-            Why Parampare
-          </span>
-          <h2 className="font-display text-2xl md:text-4xl font-bold text-foreground mt-2">
-            The Parampare Promise
-          </h2>
+        <div className="text-center mb-12 opacity-0 animate-fade-in">
+          <span className="inline-block text-gold font-body text-xs tracking-[0.25em] uppercase mb-3">Why Parampare</span>
+          <h2 className="font-display text-2xl md:text-4xl font-medium text-foreground">The Parampare Promise</h2>
         </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="text-center group opacity-0 animate-fade-in-up"
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-            >
-              <div className="w-16 h-16 mx-auto rounded-full bg-gold/10 flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-gold/20 group-hover:scale-110">
-                <feature.icon className="w-7 h-7 text-gold transition-transform duration-300 group-hover:scale-110" />
+            <div key={feature.title} className="text-center group opacity-0 animate-fade-in-up" style={{ animationDelay: `${0.1 + index * 0.1}s` }}>
+              <div className="w-14 h-14 mx-auto rounded-full bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
+                <feature.icon className="w-6 h-6 text-gold" strokeWidth={1.5} />
               </div>
-              <h3 className="font-display text-base md:text-lg font-bold text-foreground mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-xs md:text-sm font-body leading-relaxed">
-                {feature.description}
-              </p>
+              <h3 className="font-body text-sm font-semibold text-foreground mb-1">{feature.title}</h3>
+              <p className="text-muted-foreground text-xs font-body">{feature.description}</p>
             </div>
           ))}
         </div>

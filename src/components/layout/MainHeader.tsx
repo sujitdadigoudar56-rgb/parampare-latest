@@ -1,4 +1,4 @@
-import { Search, Heart, User, ShoppingBag, Menu } from "lucide-react";
+import { Search, Heart, User, ShoppingBag, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -15,9 +15,9 @@ const MainHeader = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-18 md:h-20">
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
@@ -25,24 +25,24 @@ const MainHeader = () => {
             className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <Menu className="h-5 w-5" />
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
 
           {/* Logo */}
           <a href="/" className="flex-shrink-0">
-            <h1 className="text-2xl md:text-3xl font-display font-bold text-primary tracking-wide">
+            <h1 className="text-2xl md:text-3xl font-display font-semibold text-foreground tracking-tight">
               Parampare
             </h1>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`font-body text-sm font-medium tracking-wide transition-colors hover:text-gold ${
-                  item.highlight ? "text-destructive" : "text-foreground"
+                className={`font-body text-sm font-medium tracking-wide transition-colors hover-underline ${
+                  item.highlight ? "text-destructive" : "text-foreground/80 hover:text-foreground"
                 }`}
               >
                 {item.label}
@@ -51,36 +51,37 @@ const MainHeader = () => {
           </nav>
 
           {/* Action Icons */}
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="hidden md:flex hover:text-gold">
-              <Search className="h-5 w-5" />
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" className="hidden md:flex text-foreground/70 hover:text-foreground hover:bg-transparent">
+              <Search className="h-5 w-5" strokeWidth={1.5} />
             </Button>
-            <Button variant="ghost" size="icon" className="hover:text-gold">
-              <Heart className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="text-foreground/70 hover:text-foreground hover:bg-transparent">
+              <Heart className="h-5 w-5" strokeWidth={1.5} />
             </Button>
-            <Button variant="ghost" size="icon" className="hover:text-gold">
-              <User className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="text-foreground/70 hover:text-foreground hover:bg-transparent">
+              <User className="h-5 w-5" strokeWidth={1.5} />
             </Button>
-            <Button variant="ghost" size="icon" className="relative hover:text-gold">
-              <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-gold text-accent-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+            <Button variant="ghost" size="icon" className="relative text-foreground/70 hover:text-foreground hover:bg-transparent">
+              <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+              <span className="absolute -top-0.5 -right-0.5 bg-gold text-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                 0
               </span>
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Modern Slide Down */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col space-y-3">
-              {menuItems.map((item) => (
+          <nav className="md:hidden py-6 border-t border-border/50 animate-fade-in">
+            <div className="flex flex-col gap-1">
+              {menuItems.map((item, index) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`font-body text-sm font-medium py-2 transition-colors hover:text-gold ${
+                  className={`font-body text-base font-medium py-3 px-2 rounded-lg transition-all hover:bg-secondary opacity-0 animate-fade-in-up ${
                     item.highlight ? "text-destructive" : "text-foreground"
                   }`}
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   {item.label}
                 </a>

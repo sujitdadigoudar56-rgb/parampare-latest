@@ -4,50 +4,65 @@ import heroBanner from "@/assets/hero-banner.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[70vh] md:min-h-[90vh] overflow-hidden">
+    <section className="relative min-h-[70vh] md:min-h-[90vh] overflow-hidden bg-secondary">
       {/* Background Image with Parallax Effect */}
       <div 
-        className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[20s] hover:scale-110"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s]"
         style={{ backgroundImage: `url(${heroBanner})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-gold/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-40 right-40 w-24 h-24 bg-primary/10 rounded-full blur-2xl animate-float" style={{ animationDelay: "1s" }} />
+      {/* Modern Decorative Elements - Glassmorphism */}
+      <div className="absolute top-32 right-24 w-64 h-64 bg-gradient-to-br from-gold/20 to-transparent rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-32 right-48 w-48 h-48 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-2xl animate-float" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-48 left-1/2 w-32 h-32 bg-gold/5 rounded-full blur-2xl animate-pulse-soft" />
 
       {/* Content */}
       <div className="relative container mx-auto px-4 h-full flex items-center min-h-[70vh] md:min-h-[90vh]">
-        <div className="max-w-2xl space-y-8 py-12">
-          <span className="inline-flex items-center gap-2 text-gold font-body text-sm tracking-[0.2em] uppercase opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <Sparkles className="h-4 w-4 animate-glow" />
-            Heritage Handwoven Collection
-          </span>
+        <div className="max-w-2xl space-y-8 py-16">
+          {/* Badge */}
+          <div 
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-white/40 shadow-soft opacity-0 animate-blur-in" 
+            style={{ animationDelay: "0.2s" }}
+          >
+            <Sparkles className="h-4 w-4 text-gold animate-pulse-soft" />
+            <span className="text-sm font-medium tracking-wide text-foreground">
+              Heritage Handwoven Collection
+            </span>
+          </div>
           
-          <h2 className="font-display text-5xl md:text-7xl font-bold text-foreground leading-tight opacity-0 animate-slide-in-left" style={{ animationDelay: "0.4s" }}>
+          {/* Heading */}
+          <h2 
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground leading-[1.1] tracking-tight opacity-0 animate-fade-in" 
+            style={{ animationDelay: "0.4s" }}
+          >
             Authentic
-            <span className="block text-primary relative">
+            <span className="block text-gold mt-2">
               Ilkal Sarees
-              <svg className="absolute -bottom-2 left-0 w-full h-3 text-gold/50" viewBox="0 0 200 10" preserveAspectRatio="none">
-                <path d="M0,8 Q50,0 100,8 T200,8" fill="none" stroke="currentColor" strokeWidth="3" className="animate-shimmer" />
-              </svg>
             </span>
           </h2>
           
-          <p className="font-body text-muted-foreground text-lg md:text-xl max-w-lg opacity-0 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+          {/* Description */}
+          <p 
+            className="font-body text-muted-foreground text-lg md:text-xl max-w-lg leading-relaxed opacity-0 animate-fade-in-up" 
+            style={{ animationDelay: "0.6s" }}
+          >
             Discover the timeless elegance of Karnataka's finest handloom tradition. 
-            Each saree tells a story of heritage, craftsmanship, and artistry passed down through generations.
+            Each saree tells a story of heritage and artistry.
           </p>
           
-          <div className="flex flex-wrap gap-4 pt-4 opacity-0 animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
+          {/* CTA Buttons */}
+          <div 
+            className="flex flex-wrap gap-4 pt-4 opacity-0 animate-fade-in-up" 
+            style={{ animationDelay: "0.8s" }}
+          >
             <Button 
-              variant="default" 
               size="lg" 
-              className="font-body tracking-wide group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+              className="font-body font-medium tracking-wide rounded-full px-8 py-6 bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 hover:shadow-elevated group"
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="flex items-center gap-2">
                 Shop Collection
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
@@ -55,20 +70,23 @@ const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="font-body tracking-wide border-gold text-gold hover:bg-gold hover:text-accent-foreground transition-all duration-300 hover:shadow-lg hover:shadow-gold/25"
+              className="font-body font-medium tracking-wide rounded-full px-8 py-6 border-2 border-foreground/20 text-foreground hover:bg-foreground hover:text-background transition-all duration-300"
             >
               View Bestsellers
             </Button>
           </div>
 
           {/* Trust Badges */}
-          <div className="flex flex-wrap gap-6 pt-6 opacity-0 animate-fade-in" style={{ animationDelay: "1s" }}>
-            {["100% Handwoven", "Direct from Artisans", "Free Shipping ₹2999+"].map((badge, index) => (
+          <div 
+            className="flex flex-wrap gap-8 pt-8 opacity-0 animate-fade-in" 
+            style={{ animationDelay: "1s" }}
+          >
+            {["100% Handwoven", "Direct from Artisans", "Free Shipping ₹2999+"].map((badge) => (
               <span 
                 key={badge} 
-                className="flex items-center gap-2 text-sm text-muted-foreground font-body"
+                className="flex items-center gap-2.5 text-sm text-muted-foreground font-body"
               >
-                <span className="w-1.5 h-1.5 bg-gold rounded-full" />
+                <span className="w-2 h-2 bg-gold rounded-full" />
                 {badge}
               </span>
             ))}
@@ -76,10 +94,13 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 bg-gold rounded-full animate-fade-in-up" style={{ animationDuration: "1.5s", animationIterationCount: "infinite" }} />
+      {/* Modern Scroll Indicator */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in" style={{ animationDelay: "1.2s" }}>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs font-body text-muted-foreground tracking-widest uppercase">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-foreground/30 to-transparent relative overflow-hidden">
+            <div className="absolute inset-0 w-full bg-gold animate-fade-in-up" style={{ animationDuration: "1.5s", animationIterationCount: "infinite" }} />
+          </div>
         </div>
       </div>
     </section>

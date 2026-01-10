@@ -1,109 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Modern 2025 Design System - Luxe Minimal */
 
 @layer base {
   :root {
-    --background: 40 30% 98%;
-    --foreground: 345 40% 15%;
+    --background: 30 20% 99%;
+    --foreground: 220 20% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 345 40% 15%;
+    --card-foreground: 220 20% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 345 40% 15%;
+    --popover-foreground: 220 20% 12%;
 
-    --primary: 345 65% 25%;
-    --primary-foreground: 40 30% 98%;
+    --primary: 220 25% 18%;
+    --primary-foreground: 30 20% 98%;
 
-    --secondary: 40 40% 94%;
-    --secondary-foreground: 345 40% 20%;
+    --secondary: 30 15% 96%;
+    --secondary-foreground: 220 20% 20%;
 
-    --muted: 40 20% 92%;
-    --muted-foreground: 345 20% 45%;
+    --muted: 30 10% 94%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 43 75% 55%;
-    --accent-foreground: 345 65% 15%;
+    --accent: 24 80% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 40 30% 88%;
-    --input: 40 30% 88%;
-    --ring: 345 65% 25%;
+    --border: 30 15% 90%;
+    --input: 30 15% 90%;
+    --ring: 24 80% 50%;
 
-    --radius: 0.25rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 40 30% 97%;
-    --sidebar-foreground: 345 40% 20%;
-    --sidebar-primary: 345 65% 25%;
-    --sidebar-primary-foreground: 40 30% 98%;
-    --sidebar-accent: 40 40% 94%;
-    --sidebar-accent-foreground: 345 40% 20%;
-    --sidebar-border: 40 30% 88%;
-    --sidebar-ring: 345 65% 25%;
+    --sidebar-background: 30 20% 98%;
+    --sidebar-foreground: 220 20% 20%;
+    --sidebar-primary: 220 25% 18%;
+    --sidebar-primary-foreground: 30 20% 98%;
+    --sidebar-accent: 30 15% 96%;
+    --sidebar-accent-foreground: 220 20% 20%;
+    --sidebar-border: 30 15% 90%;
+    --sidebar-ring: 24 80% 50%;
 
-    /* Custom Parampare tokens */
-    --gold: 43 75% 55%;
-    --gold-light: 43 60% 75%;
-    --gold-dark: 43 80% 40%;
-    --maroon: 345 65% 25%;
-    --maroon-light: 345 50% 40%;
-    --maroon-dark: 345 70% 18%;
-    --cream: 40 30% 96%;
-    --cream-dark: 40 25% 90%;
+    /* Modern Parampare tokens - Warm Terracotta & Deep Navy */
+    --gold: 24 80% 50%;
+    --gold-light: 28 70% 70%;
+    --gold-dark: 20 85% 38%;
+    --maroon: 220 25% 18%;
+    --maroon-light: 220 20% 35%;
+    --maroon-dark: 220 30% 12%;
+    --cream: 30 20% 97%;
+    --cream-dark: 30 15% 92%;
+    
+    /* Glass effect tokens */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.2;
   }
 
   .dark {
-    --background: 345 40% 8%;
-    --foreground: 40 30% 95%;
+    --background: 220 25% 8%;
+    --foreground: 30 20% 95%;
 
-    --card: 345 40% 12%;
-    --card-foreground: 40 30% 95%;
+    --card: 220 25% 12%;
+    --card-foreground: 30 20% 95%;
 
-    --popover: 345 40% 12%;
-    --popover-foreground: 40 30% 95%;
+    --popover: 220 25% 12%;
+    --popover-foreground: 30 20% 95%;
 
-    --primary: 43 75% 55%;
-    --primary-foreground: 345 65% 15%;
+    --primary: 24 80% 55%;
+    --primary-foreground: 220 25% 10%;
 
-    --secondary: 345 30% 18%;
-    --secondary-foreground: 40 30% 95%;
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 30 20% 95%;
 
-    --muted: 345 30% 18%;
-    --muted-foreground: 40 20% 65%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 30 15% 60%;
 
-    --accent: 43 75% 55%;
-    --accent-foreground: 345 65% 15%;
+    --accent: 24 80% 55%;
+    --accent-foreground: 220 25% 10%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 345 30% 20%;
-    --input: 345 30% 20%;
-    --ring: 43 75% 55%;
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 24 80% 55%;
     
-    --sidebar-background: 345 40% 10%;
-    --sidebar-foreground: 40 30% 95%;
-    --sidebar-primary: 43 75% 55%;
-    --sidebar-primary-foreground: 345 65% 15%;
-    --sidebar-accent: 345 30% 18%;
-    --sidebar-accent-foreground: 40 30% 95%;
-    --sidebar-border: 345 30% 20%;
-    --sidebar-ring: 43 75% 55%;
+    --sidebar-background: 220 25% 10%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 24 80% 55%;
+    --sidebar-primary-foreground: 220 25% 10%;
+    --sidebar-accent: 220 20% 15%;
+    --sidebar-accent-foreground: 30 20% 95%;
+    --sidebar-border: 220 20% 18%;
+    --sidebar-ring: 24 80% 55%;
 
-    --gold: 43 75% 55%;
-    --gold-light: 43 60% 75%;
-    --gold-dark: 43 80% 40%;
-    --maroon: 345 65% 35%;
-    --maroon-light: 345 50% 50%;
-    --maroon-dark: 345 70% 25%;
-    --cream: 40 20% 15%;
-    --cream-dark: 40 15% 12%;
+    --gold: 24 80% 55%;
+    --gold-light: 28 70% 70%;
+    --gold-dark: 20 85% 42%;
+    --maroon: 220 25% 75%;
+    --maroon-light: 220 20% 85%;
+    --maroon-dark: 220 30% 65%;
+    --cream: 220 15% 15%;
+    --cream-dark: 220 15% 12%;
+    
+    --glass-bg: 220 25% 15% / 0.7;
+    --glass-border: 220 25% 25% / 0.3;
   }
 }
 
@@ -113,6 +120,37 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-xl border border-white/10;
+  }
+  
+  /* Modern gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-gold via-gold-dark to-gold bg-clip-text text-transparent;
+  }
+  
+  /* Smooth underline animation */
+  .hover-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100;
+  }
+  
+  /* Card hover lift */
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10;
+  }
+  
+  /* Soft glow */
+  .soft-glow {
+    @apply shadow-lg shadow-gold/20;
   }
 }
