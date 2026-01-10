@@ -49,19 +49,19 @@ const Bestsellers = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section className="py-16 md:py-24 overflow-hidden">
+    <section className="py-20 md:py-28 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          <span className="text-gold font-body text-sm tracking-[0.2em] uppercase">
+        {/* Modern Header */}
+        <div className="text-center mb-14 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <span className="inline-block text-gold font-body text-xs tracking-[0.25em] uppercase mb-3">
             Most Loved
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mt-2">
+          <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground">
             Bestsellers
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-4" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
           {products.map((product, index) => (
             <div 
               key={product.id} 
@@ -70,81 +70,73 @@ const Bestsellers = () => {
               onMouseEnter={() => setHoveredId(product.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="relative overflow-hidden rounded-lg bg-cream mb-4 shadow-sm hover:shadow-xl transition-all duration-500">
+              <div className="relative overflow-hidden rounded-2xl bg-secondary mb-4 card-hover">
                 <img
                   src={product.image}
                   alt={product.name}
                   className={`w-full aspect-[3/4] object-cover transition-all duration-700 ${
-                    hoveredId === product.id ? "scale-110 blur-[1px]" : "scale-100"
+                    hoveredId === product.id ? "scale-105" : "scale-100"
                   }`}
                 />
                 
-                {/* Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent transition-opacity duration-300 ${
-                  hoveredId === product.id ? "opacity-100" : "opacity-0"
-                }`} />
-                
-                {/* Tag */}
+                {/* Tag - Modern Pill */}
                 {product.tag && (
-                  <span className={`absolute top-3 left-3 px-3 py-1.5 text-xs font-body font-semibold rounded-full shadow-lg transition-transform duration-300 ${
-                    hoveredId === product.id ? "translate-y-0" : ""
-                  } ${
+                  <span className={`absolute top-4 left-4 px-3 py-1.5 text-xs font-body font-medium rounded-full ${
                     product.tag === "Sale" 
-                      ? "bg-destructive text-destructive-foreground" 
+                      ? "bg-destructive text-white" 
                       : product.tag === "New Arrival"
-                      ? "bg-gold text-accent-foreground animate-glow"
-                      : "bg-primary text-primary-foreground"
+                      ? "bg-foreground text-background"
+                      : "bg-gold text-foreground"
                   }`}>
                     {product.tag}
                   </span>
                 )}
 
                 {/* Discount Badge */}
-                <span className="absolute top-3 right-3 px-2 py-1 text-xs font-body font-bold bg-background/90 text-destructive rounded-full backdrop-blur-sm">
+                <span className="absolute top-4 right-4 px-2.5 py-1 text-xs font-body font-semibold bg-white text-foreground rounded-full shadow-soft">
                   {product.discount}
                 </span>
 
-                {/* Action Buttons */}
-                <div className={`absolute top-14 right-3 flex flex-col gap-2 transition-all duration-300 ${
+                {/* Action Buttons - Modern Style */}
+                <div className={`absolute top-14 right-4 flex flex-col gap-2 transition-all duration-300 ${
                   hoveredId === product.id ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
                 }`}>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="bg-background/90 backdrop-blur-sm hover:bg-gold hover:text-accent-foreground rounded-full h-9 w-9 shadow-lg transition-all duration-300 hover:scale-110"
+                    className="bg-white hover:bg-gold hover:text-white rounded-full h-10 w-10 shadow-soft transition-all duration-300"
                   >
-                    <Heart className="h-4 w-4" />
+                    <Heart className="h-4 w-4" strokeWidth={1.5} />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="bg-background/90 backdrop-blur-sm hover:bg-gold hover:text-accent-foreground rounded-full h-9 w-9 shadow-lg transition-all duration-300 hover:scale-110"
+                    className="bg-white hover:bg-gold hover:text-white rounded-full h-10 w-10 shadow-soft transition-all duration-300"
                   >
-                    <Eye className="h-4 w-4" />
+                    <Eye className="h-4 w-4" strokeWidth={1.5} />
                   </Button>
                 </div>
 
-                {/* Quick Add */}
+                {/* Quick Add - Modern Button */}
                 <div className={`absolute bottom-0 left-0 right-0 p-4 transition-all duration-500 ${
                   hoveredId === product.id ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
                 }`}>
                   <Button 
-                    variant="default" 
                     size="sm" 
-                    className="w-full font-body text-sm bg-gold hover:bg-gold-dark text-accent-foreground gap-2 shadow-xl"
+                    className="w-full font-body text-sm bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full shadow-elevated"
                   >
-                    <ShoppingBag className="h-4 w-4" />
+                    <ShoppingBag className="h-4 w-4" strokeWidth={1.5} />
                     Add to Cart
                   </Button>
                 </div>
               </div>
 
-              <div className="space-y-2 px-1">
-                <h3 className="font-body text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors duration-300">
+              <div className="space-y-2">
+                <h3 className="font-body text-sm font-medium text-foreground line-clamp-2 group-hover:text-gold transition-colors duration-300">
                   {product.name}
                 </h3>
                 <div className="flex items-center gap-2">
-                  <span className="font-display font-bold text-lg text-foreground">
+                  <span className="font-display font-semibold text-lg text-foreground">
                     ₹{product.price.toLocaleString()}
                   </span>
                   <span className="font-body text-sm text-muted-foreground line-through">
@@ -156,11 +148,11 @@ const Bestsellers = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12 opacity-0 animate-fade-in" style={{ animationDelay: "0.8s" }}>
+        <div className="text-center mt-14 opacity-0 animate-fade-in" style={{ animationDelay: "0.8s" }}>
           <Button 
             variant="outline" 
             size="lg" 
-            className="font-body tracking-wide border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 group"
+            className="font-body font-medium tracking-wide rounded-full px-8 border-2 border-foreground/20 hover:bg-foreground hover:text-background transition-all duration-300 group"
           >
             View All Bestsellers
             <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
