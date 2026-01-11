@@ -24,9 +24,14 @@ const Cart = () => {
     setCartItems(storedCart);
   }, []);
 
+  const dispatchCartUpdate = () => {
+    window.dispatchEvent(new Event("cartUpdated"));
+  };
+
   const updateCart = (items: CartItem[]) => {
     setCartItems(items);
     localStorage.setItem("cart", JSON.stringify(items));
+    dispatchCartUpdate();
   };
 
   const updateQuantity = (id: string, newQuantity: number) => {
