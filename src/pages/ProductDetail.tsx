@@ -43,6 +43,10 @@ const ProductDetail = () => {
     ],
   };
 
+  const dispatchCartUpdate = () => {
+    window.dispatchEvent(new Event("cartUpdated"));
+  };
+
   const handleAddToCart = () => {
     // Get existing cart or create new
     const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -55,6 +59,7 @@ const ProductDetail = () => {
     }
     
     localStorage.setItem("cart", JSON.stringify(existingCart));
+    dispatchCartUpdate();
     
     toast({
       title: "Added to cart!",
@@ -74,6 +79,7 @@ const ProductDetail = () => {
     }
     
     localStorage.setItem("cart", JSON.stringify(existingCart));
+    dispatchCartUpdate();
     
     // Check if logged in
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
