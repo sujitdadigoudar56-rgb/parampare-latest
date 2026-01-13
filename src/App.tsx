@@ -14,6 +14,18 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import MyOrders from "./pages/MyOrders";
+import IlkalSarees from "./pages/IlkalSarees";
+import OurStory from "./pages/OurStory";
+import ShippingDelivery from "./pages/ShippingDelivery";
+import ReturnsExchange from "./pages/ReturnsExchange";
+import FAQs from "./pages/FAQs";
+import TheArtisans from "./pages/TheArtisans";
+import Sustainability from "./pages/Sustainability";
+import TermsOfUse from "./pages/TermsOfUse";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import ContactUs from "./pages/ContactUs";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +46,18 @@ const App = () => (
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/orders" element={<MyOrders />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/ilkal-sarees" element={<IlkalSarees />} />
+          <Route path="/our-story" element={<OurStory />} />
+          <Route path="/shipping-delivery" element={<ShippingDelivery />} />
+          <Route path="/returns-exchange" element={<ReturnsExchange />} />
+          <Route path="/faqs" element={<FAQs />} />
+          <Route path="/artisans" element={<TheArtisans />} />
+          <Route path="/sustainability" element={<Sustainability />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/contact" element={<ContactUs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
