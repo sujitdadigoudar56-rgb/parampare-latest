@@ -57,7 +57,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-primary via-primary to-maroon-dark relative overflow-hidden">
+    <section id="testimonials" className="py-16 md:py-24 bg-gradient-to-br from-primary via-primary to-maroon-dark relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-10 left-10 w-40 h-40 bg-gold/10 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-10 right-10 w-60 h-60 bg-gold/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />

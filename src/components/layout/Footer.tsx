@@ -86,12 +86,6 @@ const Footer = () => {
                 <li key={link.label}><Link to={link.to} className="text-muted-foreground hover:text-gold">{link.label}</Link></li>
               ))}
             </ul>
-            <div className="mt-8">
-              <h5 className="font-body font-bold text-sm uppercase tracking-wide mb-4 text-background">We Accept</h5>
-              <div className="flex gap-2 flex-wrap">
-                {["Visa", "MC", "UPI", "GPay"].map((m) => (<span key={m} className="px-3 py-1.5 bg-muted-foreground/10 rounded text-xs text-muted-foreground">{m}</span>))}
-              </div>
-            </div>
           </div>
         </div>
       </div>

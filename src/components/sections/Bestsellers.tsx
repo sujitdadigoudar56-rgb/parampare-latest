@@ -49,7 +49,7 @@ const Bestsellers = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-28 bg-background overflow-hidden">
+    <section id="bestsellers" className="py-20 md:py-28 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Modern Header */}
         <div className="text-center mb-14 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
