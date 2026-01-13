@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 const HeroSection = () => {
@@ -53,27 +54,22 @@ const HeroSection = () => {
             Each saree tells a story of heritage and artistry.
           </p>
           
-          {/* CTA Buttons */}
+          {/* CTA Button */}
           <div 
             className="flex flex-wrap gap-4 pt-4 opacity-0 animate-fade-in-up" 
             style={{ animationDelay: "0.8s" }}
           >
-            <Button 
-              size="lg" 
-              className="font-body font-medium tracking-wide rounded-full px-8 py-6 bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 hover:shadow-elevated group"
-            >
-              <span className="flex items-center gap-2">
-                Shop Collection
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="font-body font-medium tracking-wide rounded-full px-8 py-6 border-2 border-foreground/20 text-foreground hover:bg-foreground hover:text-background transition-all duration-300"
-            >
-              View Bestsellers
-            </Button>
+            <Link to="/products">
+              <Button 
+                size="lg" 
+                className="font-body font-medium tracking-wide rounded-full px-8 py-6 bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 hover:shadow-elevated group"
+              >
+                <span className="flex items-center gap-2">
+                  Shop Collection
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Button>
+            </Link>
           </div>
 
           {/* Trust Badges */}

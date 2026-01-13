@@ -1,7 +1,8 @@
-import { Search, Heart, User, ShoppingBag, Menu, X, LogOut } from "lucide-react";
+import { Search, Heart, User, ShoppingBag, Menu, X, LogOut, UserPlus, Coins, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,12 +10,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const MainHeader = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const checkAuth = () => {
@@ -43,9 +52,27 @@ const MainHeader = () => {
     navigate("/");
   };
 
+  const handleBestsellersClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      document.getElementById("bestsellers")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/#bestsellers");
+    }
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+      setIsSearchOpen(false);
+    }
+  };
+
   const menuItems = [
     { label: "SALE", href: "/products?filter=sale", highlight: true },
-    { label: "BESTSELLERS", href: "/products?filter=bestsellers" },
+    { label: "BESTSELLERS", href: "/#bestsellers", onClick: handleBestsellersClick },
     { label: "NEW ARRIVALS", href: "/products?filter=new" },
     { label: "SAREES", href: "/products" },
     { label: "DRESS MATERIALS", href: "/products?category=dress-materials" },
@@ -79,6 +106,7 @@ const MainHeader = () => {
               <Link
                 key={item.label}
                 to={item.href}
+                onClick={item.onClick}
                 className={`font-body text-sm font-medium tracking-wide transition-colors hover-underline ${
                   item.highlight ? "text-destructive" : "text-foreground/80 hover:text-foreground"
                 }`}
@@ -90,63 +118,130 @@ const MainHeader = () => {
 
           {/* Action Icons */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="hidden md:flex text-foreground/70 hover:text-foreground hover:bg-transparent">
-              <Search className="h-5 w-5" strokeWidth={1.5} />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="text-foreground/70 hover:text-foreground hover:bg-transparent"
-              onClick={() => navigate("/products?filter=wishlist")}
-            >
-              <Heart className="h-5 w-5" strokeWidth={1.5} />
-            </Button>
+            {/* Search */}
+            <div className="hidden md:flex items-center">
+              {isSearchOpen ? (
+                <form onSubmit={handleSearch} className="flex items-center gap-2 animate-fade-in">
+                  <Input
+                    type="text"
+                    placeholder="Search for sarees, dress materials, occasions…"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-64 h-9 text-sm"
+                    autoFocus
+                  />
+                  <Button 
+                    type="button" 
+                    variant="ghost" 
+                    size="icon" 
+                    className="text-foreground/70 hover:text-foreground hover:bg-transparent"
+                    onClick={() => setIsSearchOpen(false)}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </form>
+              ) : (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="text-foreground/70 hover:text-foreground hover:bg-transparent"
+                      onClick={() => setIsSearchOpen(true)}
+                    >
+                      <Search className="h-5 w-5" strokeWidth={1.5} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Search</TooltipContent>
+                </Tooltip>
+              )}
+            </div>
+            
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-foreground/70 hover:text-foreground hover:bg-transparent"
+                  onClick={() => navigate("/products?filter=wishlist")}
+                >
+                  <Heart className="h-5 w-5" strokeWidth={1.5} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Wishlist</TooltipContent>
+            </Tooltip>
             
             {/* User Menu */}
-            {isLoggedIn ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-foreground/70 hover:text-foreground hover:bg-transparent">
-                    <User className="h-5 w-5" strokeWidth={1.5} />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem onClick={() => navigate("/orders")}>
-                    My Orders
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => navigate("/profile")}>
-                    My Profile
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="text-destructive">
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="text-foreground/70 hover:text-foreground hover:bg-transparent"
-                onClick={() => navigate("/login")}
-              >
-                <User className="h-5 w-5" strokeWidth={1.5} />
-              </Button>
-            )}
+            <DropdownMenu>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="text-foreground/70 hover:text-foreground hover:bg-transparent">
+                      <User className="h-5 w-5" strokeWidth={1.5} />
+                    </Button>
+                  </DropdownMenuTrigger>
+                </TooltipTrigger>
+                <TooltipContent>My Account</TooltipContent>
+              </Tooltip>
+              <DropdownMenuContent align="end" className="w-48">
+                {isLoggedIn ? (
+                  <>
+                    <DropdownMenuItem onClick={() => navigate("/profile")}>
+                      <User className="h-4 w-4 mr-2" />
+                      My Profile
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => navigate("/orders")}>
+                      <ShoppingBag className="h-4 w-4 mr-2" />
+                      My Orders
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => navigate("/coins")}>
+                      <Coins className="h-4 w-4 mr-2" />
+                      Parampare Coins
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => navigate("/coupons")}>
+                      <Tag className="h-4 w-4 mr-2" />
+                      My Coupons
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleLogout} className="text-destructive">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <>
+                    <DropdownMenuItem onClick={() => navigate("/login")}>
+                      <User className="h-4 w-4 mr-2" />
+                      Sign In
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => navigate("/register")}>
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Sign Up Now
+                    </DropdownMenuItem>
+                  </>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             {/* Cart */}
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="relative text-foreground/70 hover:text-foreground hover:bg-transparent"
-              onClick={() => navigate("/cart")}
-            >
-              <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
-              <span className="absolute -top-0.5 -right-0.5 bg-gold text-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                {cartCount}
-              </span>
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="relative text-foreground/70 hover:text-foreground hover:bg-transparent"
+                  onClick={() => navigate("/cart")}
+                >
+                  <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 bg-gold text-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                      {cartCount}
+                    </span>
+                  )}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Cart</TooltipContent>
+            </Tooltip>
           </div>
         </div>
 
